@@ -1,8 +1,8 @@
-package com.br.loja.estoque.model;
+package com.br.loja.estoque.util;
 
 public enum Tamanho {
 	
-	P("p"), M("m"), G("g"), GG("gg");
+	P("p"), PP("pp"), M("m"), G("g"), GG("gg");
 	
 	private String tipoTamanho;
 	

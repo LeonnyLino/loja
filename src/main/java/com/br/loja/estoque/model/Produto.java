@@ -1,9 +1,15 @@
 package com.br.loja.estoque.model;
 
+import java.math.BigDecimal;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.br.loja.estoque.util.Tamanho;
 
 @Entity(name = "produtos")
 public class Produto implements InterfaceModel<Long> {
@@ -18,16 +24,22 @@ public class Produto implements InterfaceModel<Long> {
 	private String codigo;
 	private String nome;
 	private String cor;
-	private Integer quantidade;
+	@Column(name= "valor", nullable = false, precision = 11, scale = 2)
+	private BigDecimal valor;
+	@Enumerated
+	@Column(name = "tamanho", nullable = false)
 	private Tamanho tamanho;	
 	private String descricao;
 	
-	public Produto(String codigo, String nome, String cor, Integer quantidade) {
+	public Produto(String codigo, String nome, String cor, Tamanho tamanho, String descricao) {
 		this.codigo = codigo;
 		this.nome = nome;
 		this.cor = cor;
-		this.quantidade = quantidade;
+		this.tamanho = tamanho;
+		this.descricao = descricao;
 	}
+	
+	public Produto() {	}
 	
 	
 	@Override
@@ -71,16 +83,6 @@ public class Produto implements InterfaceModel<Long> {
 	}
 
 
-	public Integer getQuantidade() {
-		return quantidade;
-	}
-
-
-	public void setQuantidade(Integer quantidade) {
-		this.quantidade = quantidade;
-	}
-
-
 	public Tamanho getTamanho() {
 		return tamanho;
 	}
@@ -100,11 +102,12 @@ public class Produto implements InterfaceModel<Long> {
 		this.descricao = descricao;
 	}
 	
+	public BigDecimal getValor() {
+		return valor;
+	}
 	
+	public void setValor(BigDecimal valor) {
+		this.valor = valor;
+	}
 	
-	
-	
-	
-	
-
 }
