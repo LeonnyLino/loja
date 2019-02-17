@@ -1,6 +1,6 @@
 package com.br.loja.estoque.exceptions;
 
-public class ProdutoDoesntExistsException extends Exception {
+public class ExistsProdutoException extends Exception {
 
 	/**
 	 * 

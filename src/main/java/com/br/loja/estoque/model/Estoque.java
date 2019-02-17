@@ -1,13 +1,18 @@
 package com.br.loja.estoque.model;
 
 import java.util.Calendar;
+import java.util.TreeSet;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+@Entity
 public class Estoque implements InterfaceModel<Long>{
 	
 	/**
@@ -17,12 +22,13 @@ public class Estoque implements InterfaceModel<Long>{
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Produto produto;
+	@OneToMany
+	@JoinColumn(name = "produto_id")
+	private TreeSet<Produto> produto;
 	private Integer quantidade;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar dataEntrada;
-	@Temporal(TemporalType.TIMESTAMP)
-	private Calendar dataSaida;
+	
 	
 	@Override
 	public Long getId() {
@@ -34,11 +40,11 @@ public class Estoque implements InterfaceModel<Long>{
 		this.id = id;
 	}
 
-	public Produto getProduto() {
+	public TreeSet<Produto> getProduto() {
 		return produto;
 	}
 
-	public void setProduto(Produto produto) {
+	public void setProduto(TreeSet<Produto> produto) {
 		this.produto = produto;
 	}
 
@@ -58,14 +64,6 @@ public class Estoque implements InterfaceModel<Long>{
 		this.dataEntrada = dataEntrada;
 	}
 
-	public Calendar getDataSaida() {
-		return dataSaida;
-	}
-
-	public void setDataSaida(Calendar dataSaida) {
-		this.dataSaida = dataSaida;
-	}
-	
 	
 
 }
