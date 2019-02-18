@@ -1,7 +1,7 @@
 package com.br.loja.estoque.model;
 
 import java.util.Calendar;
-import java.util.TreeSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,7 +24,7 @@ public class Estoque implements InterfaceModel<Long>{
 	private Long id;
 	@OneToMany
 	@JoinColumn(name = "produto_id")
-	private TreeSet<Produto> produto;
+	private Set<Produto> produto;
 	private Integer quantidade;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar dataEntrada;
@@ -40,11 +40,11 @@ public class Estoque implements InterfaceModel<Long>{
 		this.id = id;
 	}
 
-	public TreeSet<Produto> getProduto() {
+	public Set<Produto> getProduto() {
 		return produto;
 	}
 
-	public void setProduto(TreeSet<Produto> produto) {
+	public void setProduto(Set<Produto> produto) {
 		this.produto = produto;
 	}
 
